@@ -1,4 +1,11 @@
 <resources>
     <string name="app_name">FigmaFirst</string>
     <string name="title_activity_alarm">AlarmActivity</string>
+    <string name="title_activity_calendar">CalendarActivity</string>
+    <string name="title_activity_settings">SettingsActivity</string>
+    <string name="title_activity_profile">ProfileActivity</string>
+    <string name="title_activity_user_login">UserLogin</string>
+    <string name="title_activity_registration">RegistrationActivity</string>
+    <string name="title_activity_edit_alarm">EditAlarmActivity</string>
+    <string name="title_activity_create_alarm">CreateAlarmActivity</string>
 </resources>

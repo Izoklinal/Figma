@@ -13,32 +13,95 @@
         android:theme="@style/Theme.FigmaFirst"
         tools:targetApi="31">
         <activity
+            android:name=".CreateAlarmActivity"
+            android:exported="false"
+            android:label="@string/title_activity_create_alarm"
+            android:theme="@style/Theme.FigmaFirst">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
+            android:name=".EditAlarmActivity"
+            android:exported="false"
+            android:label="@string/title_activity_edit_alarm"
+            android:theme="@style/Theme.FigmaFirst">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
+            android:name=".RegistrationActivity"
+            android:exported="false"
+            android:label="@string/title_activity_registration"
+            android:theme="@style/Theme.FigmaFirst">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
+            android:name=".UserLoginActivity"
+            android:exported="false"
+            android:label="@string/title_activity_user_login"
+            android:theme="@style/Theme.FigmaFirst">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
+            android:name=".ProfileActivity"
+            android:exported="false"
+            android:label="@string/title_activity_profile"
+            android:theme="@style/Theme.FigmaFirst">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
+            android:name=".SettingsActivity"
+            android:exported="false"
+            android:label="@string/title_activity_settings"
+            android:theme="@style/Theme.FigmaFirst">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
+            android:name=".CalendarActivity"
+            android:exported="false"
+            android:label="@string/title_activity_calendar"
+            android:theme="@style/Theme.FigmaFirst">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
             android:name=".AlarmActivity"
-            android:exported="true"
+            android:exported="false"
             android:label="@string/title_activity_alarm"
             android:theme="@style/Theme.FigmaFirst">
-
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
             android:name=".MainActivity"
-            android:exported="false"
+            android:exported="true"
             android:label="@string/app_name"
             android:theme="@style/Theme.FigmaFirst">
-
-            <!--<intent-filter>
+            <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>-->
+            </intent-filter>
+
+            <!--
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+            -->
 
             <meta-data
                 android:name="android.app.lib_name"

@@ -1,5 +1,7 @@
 package com.example.figmafirst
 
+import android.bluetooth.le.AdvertiseSettings
+import android.content.Intent
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
@@ -13,6 +15,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
@@ -31,9 +34,9 @@ class MainActivity : ComponentActivity() {
                 Spacer(modifier = Modifier.height(40.dp))
                 AllCards()
                 Spacer(modifier = Modifier.height(108.dp))
-                ButtonAdd()
+                GreenButton("Добавить задачу")
                 Spacer(modifier = Modifier.height(40.dp))
-                BottomPanel()
+                BottomPanel(true, false, false, false)
             }
         }
     }
@@ -59,7 +62,7 @@ fun AllCards() {
 }
 
 @Composable
-fun BottomPanel() {
+fun BottomPanel(list: Boolean, clock: Boolean, calendar: Boolean, settings: Boolean) {
     Column(modifier = Modifier
         .fillMaxWidth()
         .wrapContentSize(Alignment.Center)) {
@@ -75,77 +78,198 @@ fun BottomPanel() {
             ),
             backgroundColor = LightGreen) {
             Row(modifier = Modifier.padding(all = 8.dp)) {
-                Column (modifier = Modifier.padding(start = 24.dp, top = 8.dp)) {
-                    Image(
-                        painter = painterResource(R.drawable.list),
-                        contentDescription = "List",
-                        modifier = Modifier
-                            .size(40.dp)
-                    )
-                    Text(
-                        text = "List",
-                        color = Green,
-                        modifier = Modifier
-                            .width(40.dp)
-                            .wrapContentSize(Alignment.Center),
-                        fontSize = 10.sp
-                    )
+                val context = LocalContext.current
+                if (list) {
+                    Column (modifier = Modifier.padding(start = 24.dp)) {
+                        IconButton(
+                            onClick = {context.startActivity(Intent(context, MainActivity::class.java))}){
+                            Image(
+                                painter = painterResource(
+                                    R.drawable.list_green
+                                ),
+                                contentDescription = "list",
+                                modifier = Modifier
+                                    .size(40.dp)
+                            )
+                        }
+                        Text(
+                            text = "List",
+                            color = Green,
+                            modifier = Modifier
+                                .width(50.dp)
+                                .wrapContentSize(Alignment.Center),
+                            fontSize = 10.sp
+                        )
+                    }
+                } else {
+                    Column (modifier = Modifier.padding(start = 24.dp)) {
+                        IconButton(
+                            onClick = {context.startActivity(Intent(context, MainActivity::class.java))}){
+                            Image(
+                                painter = painterResource(
+                                    R.drawable.list_red
+                                ),
+                                contentDescription = "list",
+                                modifier = Modifier
+                                    .size(40.dp)
+                            )
+                        }
+                        Text(
+                            text = "List",
+                            color = Red,
+                            modifier = Modifier
+                                .width(50.dp)
+                                .wrapContentSize(Alignment.Center),
+                            fontSize = 10.sp
+                        )
+                    }
                 }
-                Column (modifier = Modifier.padding(start = 32.dp, top = 8.dp)) {
-                    Image(
-                        painter = painterResource(R.drawable.clock),
-                        contentDescription = "Alarm",
-                        modifier = Modifier
-                            .size(40.dp)
-                    )
-                    Text(
-                        text = "Red",
-                        color = Red,
-                        modifier = Modifier
-                            .width(40.dp)
-                            .wrapContentSize(Alignment.Center),
-                        fontSize = 10.sp
-                    )
+
+                if (clock) {
+                    Column (modifier = Modifier.padding(start = 24.dp)) {
+                        IconButton(
+                            onClick = {context.startActivity(Intent(context, AlarmActivity::class.java))}){
+                            Image(
+                                painter = painterResource(
+                                    R.drawable.clock_green
+                                ),
+                                contentDescription = "clock",
+                                modifier = Modifier
+                                    .size(40.dp)
+                            )
+                        }
+                        Text(
+                            text = "Clock",
+                            color = Green,
+                            modifier = Modifier
+                                .width(50.dp)
+                                .wrapContentSize(Alignment.Center),
+                            fontSize = 10.sp
+                        )
+                    }
+                } else {
+                    Column (modifier = Modifier.padding(start = 24.dp)) {
+                        IconButton(
+                            onClick = {context.startActivity(Intent(context, AlarmActivity::class.java))}){
+                            Image(
+                                painter = painterResource(
+                                    R.drawable.clock_red
+                                ),
+                                contentDescription = "clock",
+                                modifier = Modifier
+                                    .size(40.dp)
+                            )
+                        }
+                        Text(
+                            text = "Clock",
+                            color = Red,
+                            modifier = Modifier
+                                .width(50.dp)
+                                .wrapContentSize(Alignment.Center),
+                            fontSize = 10.sp
+                        )
+                    }
                 }
-                Column (modifier = Modifier.padding(start = 32.dp, top = 8.dp)) {
-                    Image(
-                        painter = painterResource(R.drawable.calendar),
-                        contentDescription = "List",
-                        modifier = Modifier
-                            .size(40.dp)
-                    )
-                    Text(
-                        text = "Calendar",
-                        color = Red,
-                        modifier = Modifier
-                            .width(40.dp)
-                            .wrapContentSize(Alignment.Center),
-                        fontSize = 10.sp
-                    )
+
+                if (calendar) {
+                    Column (modifier = Modifier.padding(start = 24.dp)) {
+                        IconButton(
+                            onClick = {context.startActivity(Intent(context, CalendarActivity::class.java))}){
+                            Image(
+                                painter = painterResource(
+                                    R.drawable.calendar_green
+                                ),
+                                contentDescription = "calendar",
+                                modifier = Modifier
+                                    .size(40.dp)
+                            )
+                        }
+                        Text(
+                            text = "Calendar",
+                            color = Green,
+                            modifier = Modifier
+                                .width(50.dp)
+                                .wrapContentSize(Alignment.Center),
+                            fontSize = 10.sp
+                        )
+                    }
+                } else {
+                    Column (modifier = Modifier.padding(start = 24.dp)) {
+                        IconButton(
+                            onClick = {context.startActivity(Intent(context, CalendarActivity::class.java))}){
+                            Image(
+                                painter = painterResource(
+                                    R.drawable.calendar_red
+                                ),
+                                contentDescription = "calendar",
+                                modifier = Modifier
+                                    .size(40.dp)
+                            )
+                        }
+                        Text(
+                            text = "Calendar",
+                            color = Red,
+                            modifier = Modifier
+                                .width(50.dp)
+                                .wrapContentSize(Alignment.Center),
+                            fontSize = 10.sp
+                        )
+                    }
                 }
-                Column (modifier = Modifier.padding(start = 32.dp, top = 8.dp)) {
-                    Image(
-                        painter = painterResource(R.drawable.settings),
-                        contentDescription = "Settings",
-                        modifier = Modifier
-                            .size(40.dp)
-                    )
-                    Text(
-                        text = "Red",
-                        color = Red,
-                        modifier = Modifier
-                            .width(40.dp)
-                            .wrapContentSize(Alignment.Center),
-                        fontSize = 10.sp
-                    )
+
+                if (settings) {
+                    Column (modifier = Modifier.padding(start = 24.dp)) {
+                        IconButton(
+                            onClick = {context.startActivity(Intent(context, SettingsActivity::class.java))}){
+                            Image(
+                                painter = painterResource(
+                                    R.drawable.settings_green
+                                ),
+                                contentDescription = "settings",
+                                modifier = Modifier
+                                    .size(40.dp)
+                            )
+                        }
+                        Text(
+                            text = "Settings",
+                            color = Green,
+                            modifier = Modifier
+                                .width(50.dp)
+                                .wrapContentSize(Alignment.Center),
+                            fontSize = 10.sp
+                        )
+                    }
+                } else {
+                    Column (modifier = Modifier.padding(start = 24.dp)) {
+                        IconButton(
+                            onClick = {context.startActivity(Intent(context, SettingsActivity::class.java))}){
+                            Image(
+                                painter = painterResource(
+                                    R.drawable.settings_red
+                                ),
+                                contentDescription = "settings",
+                                modifier = Modifier
+                                    .size(40.dp)
+                            )
+                        }
+                        Text(
+                            text = "Settings",
+                            color = Red,
+                            modifier = Modifier
+                                .width(50.dp)
+                                .wrapContentSize(Alignment.Center),
+                            fontSize = 10.sp
+                        )
+                    }
                 }
+
             }
         }
     }
 }
 
 @Composable
-fun ButtonAdd() {
+fun GreenButton(text: String) {
     Column (modifier = Modifier
         .fillMaxWidth()
         .wrapContentSize(Alignment.Center)) {
@@ -156,7 +280,7 @@ fun ButtonAdd() {
                 .clip(RoundedCornerShape(10))
         ) {
             Text(
-                text = "Добавить задачу",
+                text = text,
                 color = MaterialTheme.colors.background
             )
         }
@@ -170,18 +294,23 @@ fun TopPanel(text: String) {
             text = text,
             color = MaterialTheme.colors.surface,
             fontWeight = FontWeight.Bold,
-            fontSize = 32.sp
+            fontSize = 24.sp
         )
 
-        Spacer(modifier = Modifier.width(160.dp))
+        val context = LocalContext.current
+        Column(modifier = Modifier
+            .fillMaxWidth()
+            .wrapContentSize(Alignment.CenterEnd)) {
+            IconButton(
+                onClick = {context.startActivity(Intent(context, ProfileActivity::class.java))}) {
+                Image(
+                    painter = painterResource(R.drawable.avatar1),
+                    contentDescription = "Avatar",
+                    modifier = Modifier
+                        .size(50.dp))
+            }
+        }
 
-        Image(
-            painter = painterResource(R.drawable.avatar),
-            contentDescription = "Avatar",
-            modifier = Modifier
-                .size(50.dp)
-                .clip(CircleShape)
-        )
     }
 }
 
@@ -258,22 +387,3 @@ fun PreviewDealCard() {
     }
 }
 
-@Preview
-@Composable
-fun PreviewButtonAdd() {
-    FigmaFirstTheme() {
-        Surface {
-            ButtonAdd()
-        }
-    }
-}
-
-@Preview
-@Composable
-fun PreviewBottomPanel() {
-    FigmaFirstTheme() {
-        Surface {
-            BottomPanel()
-        }
-    }
-}
