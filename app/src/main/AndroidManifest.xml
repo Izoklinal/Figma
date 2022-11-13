@@ -13,6 +13,22 @@
         android:theme="@style/Theme.FigmaFirst"
         tools:targetApi="31">
         <activity
+            android:name=".EditTaskActivity"
+            android:exported="false"
+            android:label="@string/title_activity_edit_task"
+            android:theme="@style/Theme.FigmaFirst" >
+
+
+
+        </activity>
+        <activity
+            android:name=".AddTaskActivity"
+            android:exported="false"
+            android:label="@string/title_activity_add_task"
+            android:theme="@style/Theme.FigmaFirst">
+
+        </activity>
+        <activity
             android:name=".CreateAlarmActivity"
             android:exported="false"
             android:label="@string/title_activity_create_alarm"
@@ -89,19 +105,13 @@
             android:exported="true"
             android:label="@string/app_name"
             android:theme="@style/Theme.FigmaFirst">
+
+
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-
-            <!--
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-            -->
 
             <meta-data
                 android:name="android.app.lib_name"

@@ -7,6 +7,7 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -33,10 +34,14 @@ class MainActivity : ComponentActivity() {
                 TopPanel("Список дел")
                 Spacer(modifier = Modifier.height(40.dp))
                 AllCards()
-                Spacer(modifier = Modifier.height(108.dp))
-                GreenButton("Добавить задачу")
-                Spacer(modifier = Modifier.height(40.dp))
-                BottomPanel(true, false, false, false)
+                Column(modifier = Modifier
+                    .fillMaxHeight()
+                    .wrapContentSize(Alignment.BottomCenter)) {
+                    AddTaskBtn("Добавить задачу")
+                    Spacer(modifier = Modifier.height(40.dp))
+                    BottomPanel(true, false, false, false)
+                }
+
             }
         }
     }
@@ -288,6 +293,26 @@ fun GreenButton(text: String) {
 }
 
 @Composable
+fun AddTaskBtn(text: String) {
+    val context = LocalContext.current
+    Column (modifier = Modifier
+        .fillMaxWidth()
+        .wrapContentSize(Alignment.Center)) {
+        Button(onClick = { context.startActivity(Intent(context, AddTaskActivity::class.java)) },
+            colors = ButtonDefaults.buttonColors(backgroundColor = LightGreen),
+            modifier = Modifier
+                .size(340.dp, 40.dp)
+                .clip(RoundedCornerShape(10))
+        ) {
+            Text(
+                text = text,
+                color = MaterialTheme.colors.background
+            )
+        }
+    }
+}
+
+@Composable
 fun TopPanel(text: String) {
     Row(modifier = Modifier.padding(all = 16.dp)) {
         Text(
@@ -322,6 +347,7 @@ data class Deal(val title: String,
 
 @Composable
 fun DealCard(deal: Deal) {
+    val context = LocalContext.current
     Column(modifier = Modifier
         .fillMaxWidth()
         .wrapContentSize(Alignment.Center))
@@ -329,6 +355,7 @@ fun DealCard(deal: Deal) {
         Card(
             modifier = Modifier
                 .size(340.dp, 80.dp)
+                .clickable { context.startActivity(Intent(context, EditTaskActivity::class.java)) }
                 .clip(
                     RoundedCornerShape(
                         topStart = 30.dp,

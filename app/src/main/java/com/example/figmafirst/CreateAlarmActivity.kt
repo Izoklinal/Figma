@@ -24,21 +24,26 @@ class CreateAlarmActivity : ComponentActivity() {
                 .background(Green)
                 .fillMaxSize()) {
                 TopPanelAlarm("Добавить будильник")
-                Spacer(modifier = Modifier.height(32.dp))
-                Row(modifier = Modifier
-                    .fillMaxWidth()) {
-                    TimeFieldPnl(txt = "16:30")
-                    Spacer(modifier = Modifier.width(32.dp))
-                    DateFieldPnl(txt = "14.01.2021")
+
+                DateTimePanel("16:30", "14.01.2021")
+
+                Column(modifier = Modifier
+                    .padding(all = 32.dp)) {
+                    SimpleText(text = "Повторять каждый")
                 }
-                
+                CheckBoxPanel("Понедельник")
+                CheckBoxPanel("Вторник")
+                CheckBoxPanel("Среда")
+                CheckBoxPanel("Четверг")
+                CheckBoxPanel("Пятница")
+                CheckBoxPanel("Суббота")
+                CheckBoxPanel("Воскресенье")
+
                 Column(modifier = Modifier
                     .fillMaxHeight()
-                    .wrapContentSize(Alignment.BottomCenter)) {
-                    DeleteAlarmBtn(text = "Удалить будильник")
-                    Spacer(modifier = Modifier.height(8.dp))
-                    SaveAlarmBtn(text = "Сохранить будильник")
-                    Spacer(modifier = Modifier.height(40.dp))
+                    .wrapContentSize(Alignment.BottomCenter)
+                    .padding(bottom = 32.dp)) {
+                    GreenButton(text = "Создать будильник")
                 }
             }
         }
